@@ -8,24 +8,47 @@ extension UIControl {
     }
 }
 
+class NewTodoListViewControllerDelegateSpy: NewTodoListViewControllerDelegate {
+    var todoListCreatedWasCalled = false
+
+    func todoListCreated() {
+        todoListCreatedWasCalled = true
+    }
+
+    func reset() {
+        todoListCreatedWasCalled = false
+    }
+}
+
+extension UIViewController {
+    static func storyboardIdentifier() -> String {
+        let className = NSStringFromClass(self)
+        let classNameComponents = className.characters.split { $0 == "." }.map{ String($0) }
+        return classNameComponents[1]
+    }
+
+    static func getInstanceFromStoryboard(name: String) -> UIViewController {
+        let storyboard = UIStoryboard(name: name, bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: self.storyboardIdentifier())
+    }
+}
+
 class NewTodoListViewControllerSpec: QuickSpec {
     override func spec() {
         var newTodoListViewController: NewTodoListViewController!
-        let parentViewController = UIViewController()
-        
+        let delegate = NewTodoListViewControllerDelegateSpy()
+
         beforeEach() {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            newTodoListViewController = storyboard.instantiateViewController(withIdentifier: "NewTodoListViewController") as! NewTodoListViewController
+            delegate.reset()
+
+            newTodoListViewController = NewTodoListViewController.getInstanceFromStoryboard(name: "Main") as! NewTodoListViewController
+            newTodoListViewController.delegate = delegate
 
             guard let window = UIApplication.shared.keyWindow else { fail(); return }
-            window.rootViewController = parentViewController
+            window.rootViewController = newTodoListViewController
             RunLoop.main.run(until: Date())
-
-            parentViewController.present(newTodoListViewController, animated: false, completion: nil)
-            
-            expect(parentViewController.presentedViewController).notTo(beNil())
         }
-        
+
         describe("when the user taps 'Create'") {
             beforeEach() {
                 guard let newTodoListTextField = newTodoListViewController.newTodoListView.newTodoListTextField else { fail(); return }
@@ -34,9 +57,9 @@ class NewTodoListViewControllerSpec: QuickSpec {
                 guard let createTodoListButton = newTodoListViewController.newTodoListView.createTodoListButton else { fail(); return }
                 createTodoListButton.tap()
             }
-            
-            it("dismisses itself") {
-                expect(parentViewController.presentedViewController).toEventually(beNil())
+
+            it("notifies its delegate that a todo list was created") {
+                expect(delegate.todoListCreatedWasCalled).to(beTrue())
             }
         }
     }

@@ -29,6 +29,10 @@
 		AEABAEAE1E526DF400A8A99D /* InMemoryTodoListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEABAEAD1E526DF400A8A99D /* InMemoryTodoListRepository.swift */; };
 		AEABAEB11E526E3900A8A99D /* InMemoryTodoListRepositorySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEABAEB01E526E3900A8A99D /* InMemoryTodoListRepositorySpec.swift */; };
 		AEABAEB31E52713B00A8A99D /* TodoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEABAEB21E52713B00A8A99D /* TodoListCell.swift */; };
+		AEABAEB61E53A0A300A8A99D /* FetchAllTodoListsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEABAEB51E53A0A300A8A99D /* FetchAllTodoListsUseCase.swift */; };
+		AEABAEB81E53A0BD00A8A99D /* FetchAllTodoListsUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEABAEB71E53A0BD00A8A99D /* FetchAllTodoListsUseCaseSpec.swift */; };
+		AEABAEBB1E53A91400A8A99D /* TodoListsDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEABAEBA1E53A91400A8A99D /* TodoListsDataSourceDelegate.swift */; };
+		AEABAEBE1E53AC3400A8A99D /* TodoListDataSourceDelegateSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEABAEBD1E53AC3400A8A99D /* TodoListDataSourceDelegateSpec.swift */; };
 		AED074C11E5239DA00E19638 /* NewTodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED074C01E5239DA00E19638 /* NewTodoListViewController.swift */; };
 		AED074C31E52560500E19638 /* NewTodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED074C21E52560500E19638 /* NewTodoListView.swift */; };
 /* End PBXBuildFile section */
@@ -82,6 +86,10 @@
 		AEABAEAD1E526DF400A8A99D /* InMemoryTodoListRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryTodoListRepository.swift; sourceTree = "<group>"; };
 		AEABAEB01E526E3900A8A99D /* InMemoryTodoListRepositorySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryTodoListRepositorySpec.swift; sourceTree = "<group>"; };
 		AEABAEB21E52713B00A8A99D /* TodoListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListCell.swift; sourceTree = "<group>"; };
+		AEABAEB51E53A0A300A8A99D /* FetchAllTodoListsUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchAllTodoListsUseCase.swift; sourceTree = "<group>"; };
+		AEABAEB71E53A0BD00A8A99D /* FetchAllTodoListsUseCaseSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchAllTodoListsUseCaseSpec.swift; sourceTree = "<group>"; };
+		AEABAEBA1E53A91400A8A99D /* TodoListsDataSourceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListsDataSourceDelegate.swift; sourceTree = "<group>"; };
+		AEABAEBD1E53AC3400A8A99D /* TodoListDataSourceDelegateSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListDataSourceDelegateSpec.swift; sourceTree = "<group>"; };
 		AED074C01E5239DA00E19638 /* NewTodoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTodoListViewController.swift; sourceTree = "<group>"; };
 		AED074C21E52560500E19638 /* NewTodoListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTodoListView.swift; sourceTree = "<group>"; };
 		B250BF44087AB1D9D16CCE6D /* Pods-TodoListTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoListTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TodoListTests/Pods-TodoListTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -155,8 +163,8 @@
 		AE3802671E5216890062ECED /* TodoList */ = {
 			isa = PBXGroup;
 			children = (
+				AEABAEB91E53A8DB00A8A99D /* DataSourceDelegates */,
 				AEABAEAC1E526DD900A8A99D /* Repositories */,
-				AEABAEA41E52668400A8A99D /* Contracts */,
 				AE38028C1E5217FD0062ECED /* Views */,
 				AE3802891E5217420062ECED /* Controllers */,
 				AE3802881E5216B20062ECED /* BusinessLogic */,
@@ -172,6 +180,7 @@
 		AE38027C1E52168A0062ECED /* TodoListTests */ = {
 			isa = PBXGroup;
 			children = (
+				AEABAEBC1E53ABEC00A8A99D /* DataSourceDelegates */,
 				AEABAEAF1E526E1A00A8A99D /* Repositories */,
 				AEABAEA71E5266BF00A8A99D /* Contracts */,
 				AEABAEA11E5264F200A8A99D /* Fakes */,
@@ -185,6 +194,7 @@
 		AE3802881E5216B20062ECED /* BusinessLogic */ = {
 			isa = PBXGroup;
 			children = (
+				AEABAEB41E539FD300A8A99D /* Contracts */,
 				AEABAE991E525D3100A8A99D /* UseCases */,
 			);
 			path = BusinessLogic;
@@ -232,6 +242,7 @@
 			children = (
 				AEABAE9A1E525D4F00A8A99D /* UseCase.swift */,
 				AEABAE9C1E525D6500A8A99D /* CreateTodoListUseCase.swift */,
+				AEABAEB51E53A0A300A8A99D /* FetchAllTodoListsUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -240,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				AEABAE9F1E525DCB00A8A99D /* CreateTodoListUseCaseSpec.swift */,
+				AEABAEB71E53A0BD00A8A99D /* FetchAllTodoListsUseCaseSpec.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -250,14 +262,6 @@
 				AEABAEA21E52650A00A8A99D /* FakeTodoListRepository.swift */,
 			);
 			path = Fakes;
-			sourceTree = "<group>";
-		};
-		AEABAEA41E52668400A8A99D /* Contracts */ = {
-			isa = PBXGroup;
-			children = (
-				AEABAEA51E5266A900A8A99D /* TodoListRepository.swift */,
-			);
-			path = Contracts;
 			sourceTree = "<group>";
 		};
 		AEABAEA71E5266BF00A8A99D /* Contracts */ = {
@@ -283,6 +287,30 @@
 				AEABAEB01E526E3900A8A99D /* InMemoryTodoListRepositorySpec.swift */,
 			);
 			path = Repositories;
+			sourceTree = "<group>";
+		};
+		AEABAEB41E539FD300A8A99D /* Contracts */ = {
+			isa = PBXGroup;
+			children = (
+				AEABAEA51E5266A900A8A99D /* TodoListRepository.swift */,
+			);
+			path = Contracts;
+			sourceTree = "<group>";
+		};
+		AEABAEB91E53A8DB00A8A99D /* DataSourceDelegates */ = {
+			isa = PBXGroup;
+			children = (
+				AEABAEBA1E53A91400A8A99D /* TodoListsDataSourceDelegate.swift */,
+			);
+			path = DataSourceDelegates;
+			sourceTree = "<group>";
+		};
+		AEABAEBC1E53ABEC00A8A99D /* DataSourceDelegates */ = {
+			isa = PBXGroup;
+			children = (
+				AEABAEBD1E53AC3400A8A99D /* TodoListDataSourceDelegateSpec.swift */,
+			);
+			path = DataSourceDelegates;
 			sourceTree = "<group>";
 		};
 		B9104B29A6F9D6B2E41CC9EF /* Frameworks */ = {
@@ -576,6 +604,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEABAEB61E53A0A300A8A99D /* FetchAllTodoListsUseCase.swift in Sources */,
+				AEABAEBB1E53A91400A8A99D /* TodoListsDataSourceDelegate.swift in Sources */,
 				AE38028B1E5217C30062ECED /* TodoListsViewController.swift in Sources */,
 				AEABAEB31E52713B00A8A99D /* TodoListCell.swift in Sources */,
 				AED074C11E5239DA00E19638 /* NewTodoListViewController.swift in Sources */,
@@ -595,9 +625,11 @@
 			files = (
 				AEABAEA31E52650A00A8A99D /* FakeTodoListRepository.swift in Sources */,
 				AEABAE881E5256FE00A8A99D /* NewTodoListViewControllerSpec.swift in Sources */,
+				AEABAEBE1E53AC3400A8A99D /* TodoListDataSourceDelegateSpec.swift in Sources */,
 				AEABAEA91E5266E000A8A99D /* TodoListRepositorySpec.swift in Sources */,
 				AEABAEA01E525DCB00A8A99D /* CreateTodoListUseCaseSpec.swift in Sources */,
 				AEABAEAB1E52688400A8A99D /* FakeTodoListRepositorySpec.swift in Sources */,
+				AEABAEB81E53A0BD00A8A99D /* FetchAllTodoListsUseCaseSpec.swift in Sources */,
 				AEABAEB11E526E3900A8A99D /* InMemoryTodoListRepositorySpec.swift in Sources */,
 				AE38029F1E521F040062ECED /* TodoListsViewControllerSpec.swift in Sources */,
 			);

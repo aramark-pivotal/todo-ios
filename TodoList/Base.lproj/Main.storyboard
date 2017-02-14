@@ -50,10 +50,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="r7z-0B-NRF" id="TBp-gN-Ne7"/>
-                                    <outlet property="delegate" destination="r7z-0B-NRF" id="dSN-8C-mt2"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

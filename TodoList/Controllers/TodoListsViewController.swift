@@ -2,45 +2,39 @@ import UIKit
 
 class TodoListsViewController: UIViewController {
     var todoListsView: TodoListsView { return view as! TodoListsView }
-    var todoLists: [String] = []
+    var todoListDataSourceDelegate: TodoListDataSourceDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        displayTodoLists()
+        if let tableView = todoListsView.tableView {
+            todoListDataSourceDelegate = TodoListDataSourceDelegate(tableView: tableView,
+                                                                    repo: InMemoryTodoListRepository.shared,
+                                                                    asyncHelper: Async())
+            if let delegate = todoListDataSourceDelegate {
+                tableView.dataSource = delegate
+                tableView.delegate = delegate
+                delegate.displayTodoLists()
+            }
+        }
     }
     
     @IBAction func addTodoListButtonTapped() {
         performSegue(withIdentifier: "PresentNewTodoListViewController", sender: nil)
     }
     
-    func displayTodoLists() {
-        InMemoryTodoListRepository.shared.getTodoLists() { (todoLists: [String]) in
-            self.todoLists = todoLists
-            DispatchQueue.main.async {
-                guard let tableView = self.todoListsView.tableView else { return }
-                tableView.reloadData()
-            }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let newTodoListViewController = segue.destination as? NewTodoListViewController {
+            newTodoListViewController.delegate = self
         }
     }
     
 }
 
-extension TodoListsViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoLists.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: "TodoListCell", for: indexPath)
-    }
-}
-
-extension TodoListsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let todoListCell = cell as? TodoListCell {
-            if let nameLabel = todoListCell.nameLabel {
-                nameLabel.text = todoLists[indexPath.row]
-            }
+extension TodoListsViewController: NewTodoListViewControllerDelegate {
+    func todoListCreated() {
+        if let delegate = todoListDataSourceDelegate {
+            delegate.displayTodoLists()
         }
+        self.dismiss(animated: true) {}
     }
 }
